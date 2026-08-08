@@ -1,0 +1,84 @@
+{
+  "base_url": {
+    "type": "string",
+    "description": "兼容 OpenAI 的图片生成 API 地址(末尾不要带 /v1)。例如 https://api.openai.com/v1 或中转站 https://your-relay.com/v1",
+    "default": "https://api.openai.com/v1"
+  },
+  "api_key": {
+    "type": "string",
+    "description": "你的 API 密钥, 中转站一般以 sk- 开头",
+    "default": ""
+  },
+  "model": {
+    "type": "string",
+    "description": "图片生成模型, 支持 gpt-image-1、gpt-image-2、dall-e-3、qwen-image 等任何兼容 /v1/images/generations 的模型",
+    "default": "gpt-image-1"
+  },
+  "image_size": {
+    "type": "string",
+    "description": "图片尺寸, 推荐 1024x1024",
+    "default": "1024x1024"
+  },
+  "trigger_probability": {
+    "type": "float",
+    "description": "检测到场景关键词后真正发图的概率, 建议 0.2 ~ 0.4",
+    "default": 0.3
+  },
+  "cooldown_messages": {
+    "type": "int",
+    "description": "两次发图之间至少间隔多少条消息",
+    "default": 7
+  },
+  "daily_limit": {
+    "type": "int",
+    "description": "每种表情包一天最多发送多少次, 防止轰炸",
+    "default": 3
+  },
+  "timeout": {
+    "type": "int",
+    "description": "调用图片生成 API 的最大等待时间(秒)",
+    "default": 60
+  },
+  "send_mode": {
+    "type": "string",
+    "description": "LLM 调用工具时的发送方式: append=文字+图片, replace=仅发图片",
+    "options": ["append", "replace"],
+    "default": "append"
+  },
+  "auto_retry": {
+    "type": "bool",
+    "description": "生成失败时自动用LLM优化提示词重试",
+    "default": true,
+    "hint": "提示词被审核拒绝/生成失败时, 自动用LLM改写为更安全合规的版本重新生成, 直到成功"
+  },
+  "max_retries": {
+    "type": "int",
+    "description": "最大重试次数(含首次)",
+    "default": 3
+  },
+  "use_persona": {
+    "type": "bool",
+    "description": "启用'人设表情包': 生成的是人设形象做表情, 而非通用二次元卡通",
+    "default": true,
+    "hint": "开启后, 表情包会带人设参考图锁定身份(参考图来源: 下方上传, 或 gpt_image_2_simple 的人设参考图目录)"
+  },
+  "persona_description": {
+    "type": "text",
+    "description": "人设描述(用于生成表情包提示词)",
+    "default": "苏静怡, 二次元少女, 白色长发, 性格温柔略带俏皮"
+  },
+  "persona_style": {
+    "type": "string",
+    "description": "人设风格",
+    "default": "可爱动漫风"
+  },
+  "ref_image_upload": {
+    "type": "file",
+    "description": "人设参考图上传(可选, 用于锁定人物形象)"
+  },
+  "scenes_json": {
+    "type": "text",
+    "description": "自定义场景配置(JSON), 格式见 README。留空则使用默认 6 种场景",
+    "default": ""
+  }
+}
