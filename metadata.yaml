@@ -2,7 +2,7 @@ name: emoji_sticker
 display_name: 表情包代替说话
 desc: 监听 LLM 回复, 在合适场景下调用 OpenAI 兼容的图片生成 API, 用表情包图片代替/点缀文字, 让聊天更有温度。
 version: 1.0.0
-author: anon
+author: 苏静怡
 repo: https://github.com/your-repo/astrbot_plugin_emoji_sticker
 tags:
   - sticker
